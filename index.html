@@ -870,7 +870,73 @@
             </div>
         </div>
     </section>
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effet Flou et Grillée</title>
+    <style>
+        /* Style pour l'effet flou et grillé */
+        .blur-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(5px) brightness(0.7);
+            -webkit-backdrop-filter: blur(5px) brightness(0.7);
+            pointer-events: none;
+            z-index: 9998;
+        }
+        
+        .scanlines-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(255, 255, 255, 0.03) 50%, 
+                rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay;
+        }
+        
+        .glitch-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, 
+                rgba(255, 0, 0, 0.1) 0%, 
+                rgba(0, 255, 0, 0.1) 50%, 
+                rgba(0, 0, 255, 0.1) 100%);
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: screen;
+            opacity: 0.3;
+            animation: glitch 0.5s infinite alternate;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translateX(-2px); }
+            100% { transform: translateX(2px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Vos contenus existants ici -->
+    
+    <!-- Overlays pour les effets -->
+    <div class="blur-effect"></div>
+    <div class="scanlines-effect"></div>
+    <div class="glitch-effect"></div>
+</body>
+</html>
     <!-- Section Portfolio -->
     <section id="portfolio">
         <div class="container">
