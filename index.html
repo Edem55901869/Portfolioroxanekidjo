@@ -1224,6 +1224,7 @@
     </section>
 
     <!-- Footer -->
+<!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-logo">Roxane Kidjo</div>
@@ -1374,6 +1375,30 @@
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 }
             });
+        });
+
+        // Gestion des erreurs de téléchargement du CV
+        const cvDownloadLink = document.getElementById('cv-download');
+        const cvError = document.getElementById('cv-error');
+        
+        cvDownloadLink.addEventListener('click', (e) => {
+            // Réinitialiser le message d'erreur
+            cvError.style.display = 'none';
+            
+            // Vérifier après un court délai si le téléchargement a réussi
+            setTimeout(() => {
+                // Si le navigateur est toujours sur la même page, supposons que le téléchargement a échoué
+                if (!document.hidden) {
+                    cvError.style.display = 'block';
+                    
+                    // Proposer une alternative
+                    setTimeout(() => {
+                        if (confirm("Le téléchargement semble avoir échoué. Souhaitez-vous m'envoyer un email pour demander mon CV ?")) {
+                            window.location.href = "mailto:roxanekidjo59@gmail.com?subject=Demande de CV&body=Bonjour Roxane, je suis intéressé(e) par votre profil et je souhaiterais recevoir votre CV. Merci !";
+                        }
+                    }, 1000);
+                }
+            }, 2000);
         });
     </script>
 </body>
