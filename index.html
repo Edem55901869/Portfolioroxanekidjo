@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roxane Kidjo - Portfolio Professionnel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables et reset */
+        :root {
+            --primary: #0066ff; /* Bleu électrique */
+            --secondary: #ffcc00; /* Jaune vif */
+            --dark: #121212;
+            --light: #f8f8f8;
+            --transition: 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typographie responsive */
+        html {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
+        /* Layout de base */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            background: yellow;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Menu mobile */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Sections communes */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Accueil */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .home-content {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .home-img {
+            flex: 1;
+            position: relative;
+            max-width: 500px;
+        }
+
+        .home-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 102, 255, 0.2);
+        }
+
+        .home-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .home-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .home-text {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            min-width: 180px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), #0033aa);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--secondary);
+            color: var(--light);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 204, 0, 0.1);
+        }
+
+        .btn-profile-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        /* À propos */
+        #about {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-text {
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(0, 102, 255, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Compétences */
+        .skills-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            margin-bottom: 25px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: width 1s ease;
+        }
+
+        /* Portfolio */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--light);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/3;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .portfolio-category {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .portfolio-link {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .portfolio-link:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 102, 255, 0.5);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2001;
+        }
+
+        .lightbox-close:hover {
+            color: var(--secondary);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            transform: translateY(-50%);
+            z-index: 2001;
+        }
+
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-nav button:hover {
+            background: var(--primary);
+        }
+
+        /* Contact */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            background: rgba(0, 102, 255, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-detail {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Animations subtiles */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-container,
+            #home .container {
+                flex-direction: column;
+            }
+
+            .home-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .about-img {
+                margin-bottom: 40px;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--dark);
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                transform: translateY(-150%);
+                transition: transform 0.5s ease;
+                z-index: 999;
+            }
+
+            nav.active {
+                transform: translateY(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                margin-bottom: 30px;
+            }
+
+            .lightbox-nav {
+                padding: 0 15px;
+            }
+
+            .lightbox-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                width: 100%;
+            }
+
+            .portfolio-filter {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+
+            .social-links {
+                gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Roxane Kidjo</a>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Accueil</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Accueil -->
+    <section id="home">
+        <div class="container">
+            <div class="flex-container">
+                <div class="home-content fade-in">
+                    <h1 class="home-title">Design créatif & Solutions digitales</h1>
+                    <h2 class="home-subtitle">Je transforme vos idées en expériences visuelles mémorables</h2>
+                    <p class="home-text">Créatrice passionnée spécialisée dans la conception d'interfaces innovantes, d'identités visuelles percutantes et de solutions digitales sur mesure pour propulser votre marque vers l'avenir.</p>
+                    <div class="btn-group">
+                        <a href="#portfolio" class="btn btn-primary fade-in delay-1">Voir mon travail</a>
+                        <a href="#contact" class="btn btn-outline fade-in delay-2">
+                            <!-- REMPLACER PAR LE CHEMIN VERS VOTRE IMAGE DE PROFIL -->
+                            <img src="/apropos.jpg" alt="Profil" class="btn-profile-icon">
+                            Contactez-moi
+                        </a>
+                    </div>
+                </div>
+                <div class="home-img fade-in delay-1">
+                    <!-- REMPLACER PAR VOTRE IMAGE -->
+                    <img src="/Profil.jpg" alt="Roxane Kidjo">
+                </div>
+            </div>
+        </div>
+      </section>
+
+    <!-- Section À propos -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">À propos</h2>
+            <div class="about-container">
+                <div class="about-img fade-in">
+                    <!-- REMPLACER PAR VOTRE PHOTO PROFESSIONNELLE -->
+                    <img src="/apropos.jpg" alt="Roxane Kidjo">
+                </div>
+                <div class="about-content fade-in delay-1">
+                    <p class="about-text">Designer graphique et développeuse front-end avec plus de 2 ans d'expérience dans la création d'identités visuelles et d'interfaces utilisateur intuitives. Passionnée par l'intersection entre l'esthétique et la technologie.</p>
+                    <p class="about-text">Mon approche combine une compréhension approfondie des principes du design, une maîtrise des outils techniques et une curiosité insatiable pour les nouvelles tendances digitales.</p>
+                    <a href="/cvroxanekidjo.pdf" class="btn btn-primary" download="CV_Roxane_Kidjo.pdf">Télécharger mon CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Services -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title fade-in">Mes Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">Carousels</h3>
+                    <p class="service-description">Création de carousels interactifs et esthétiques pour sites web et applications mobiles.</p>
+                </div>
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-vector-square"></i>
+                    </div>
+                    <h3 class="service-title">Identité Visuelle</h3>
+                    <p class="service-description">Développement de logos et d'identités de marque cohérentes et distinctives.</p>
+                </div>
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Affiches Publicitaires</h3>
+                    <p class="service-description">Conception d'affiches percutantes qui captent l'attention et communiquent efficacement.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Développement Web</h3>
+                    <p class="service-description">Création de sites web modernes, réactifs et optimisés pour le référencement.</p>
+                </div>
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="service-title">Solutions IA</h3>
+                    <p class="service-description">Intégration d'intelligence artificielle dans vos produits digitaux.</p>
+                </div>
+            </div>
+
+            <div class="skills-container fade-in delay-2">
+                <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">Mes Compétences</h3>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>UI/UX Design</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 50%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Illustration</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Développement Front-end</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Motion Design</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Intégration IA</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Portfolio -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title fade-in">Mon Portfolio</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; color: rgba(255,255,255,0.7);" class="fade-in delay-1">Découvrez mes réalisations récentes à travers différents domaines de spécialisation.</p>
+            
+            <div class="portfolio-filter fade-in delay-1">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="carousels">Carousels</button>
+                <button class="filter-btn" data-filter="logo">Logo</button>
+                <button class="filter-btn" data-filter="affiche">Affiche</button>
+                <button class="filter-btn" data-filter="web">Site Web</button>
+                <button class="filter-btn" data-filter="ia">Solution IA</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Carousels (5 exemples) -->
+                <div class="portfolio-item carousels fade-in">
+                    <img src="/ph1.jpg" alt="Carousel application mobile" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Application Mobile</h3>
+                        <p class="portfolio-category">Carousel</p>
+                        <a href="/ph1.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item carousels fade-in delay-1">
+                    <img src="/ph2.jpg" alt="Carousel dashboard analytique" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Dashboard Analytique</h3>
+                        <p class="portfolio-category">Carousel</p>
+                        <a href="/ph2.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item carousels fade-in delay-2">
+                    <img src="/ph3.jpg" alt="Carousel site e-commerce" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">E-commerce</h3>
+                        <p class="portfolio-category">Carousel</p>
+                        <a href="/ph3.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item carousels fade-in">
+                    <img src="/ph4.jpg" alt="Carousel application SaaS" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Application SaaS</h3>
+                        <p class="portfolio-category">Carousel</p>
+                        <a href="/ph4.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item carousels fade-in delay-1">
+                    <img src="/ph5.jpg" alt="Carousel interface AR" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Interface AR</h3>
+                        <p class="portfolio-category">Carousel</p>
+                        <a href="/ph5.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Logos (5 exemples) -->
+                <div class="portfolio-item logo fade-in delay-2">
+                    <img src="/lo1.jpg" alt="Logo entreprise tech" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Tech Startup</h3>
+                        <p class="portfolio-category">Logo Design</p>
+                        <a href="/lo1.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item logo fade-in">
+                    <img src="/lo2.jpg" alt="Logo restaurant" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Restaurant Gastronomique</h3>
+                        <p class="portfolio-category">Logo Design</p>
+                        <a href="/lo2.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item logo fade-in delay-1">
+                    <img src="/lo3.jpg" alt="Logo marque de luxe" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Marque de Luxe</h3>
+                        <p class="portfolio-category">Logo Design</p>
+                        <a href="/lo3.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item logo fade-in delay-2">
+                    <img src="/lo4.jpg" alt="Logo association" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Association</h3>
+                        <p class="portfolio-category">Logo Design</p>
+                        <a href="/lo4.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item logo fade-in">
+                    <img src="/lo5.jpg" alt="Logo application" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Application Mobile</h3>
+                        <p class="portfolio-category">Logo Design</p>
+                        <a href="/lo5.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Affiches (5 exemples) -->
+                <div class="portfolio-item affiche fade-in delay-1">
+                    <img src="/af1.jpg" alt="Affiche concert" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Concert</h3>
+                        <p class="portfolio-category">Affiche Publicitaire</p>
+                        <a href="/af1.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item affiche fade-in delay-2">
+                    <img src="/af2.jpg" alt="Affiche festival" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Festival</h3>
+                        <p class="portfolio-category">Affiche Publicitaire</p>
+                        <a href="/af2.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item affiche fade-in">
+                    <img src="/af3.jpg" alt="Affiche promotionnelle" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Promotion</h3>
+                        <p class="portfolio-category">Affiche Publicitaire</p>
+                        <a href="/af3.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item affiche fade-in delay-1">
+                    <img src="/af4.jpg" alt="Affiche événement" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Événement</h3>
+                        <p class="portfolio-category">Affiche Publicitaire</p>
+                        <a href="/af4.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item affiche fade-in delay-2">
+                    <img src="/af5.jpg" alt="Affiche culturelle" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Événement Culturel</h3>
+                        <p class="portfolio-category">Affiche Publicitaire</p>
+                        <a href="/af5.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Sites Web (5 exemples avec liens externes) -->
+                <div class="portfolio-item web fade-in">
+                    <img src="/si1.jpg" alt="Site vitrine" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Site Vitrine (AgroVision) </h3>
+                        <p class="portfolio-category">Développement Web</p>
+                        <a href="https://agrovision229.netlify.app/" target="_blank" class="portfolio-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item web fade-in delay-1">
+                    <img src="/si2.jpg" alt="Portfolio artiste" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">La maison des biscuits</h3>
+                        <p class="portfolio-category">Développement Web</p>
+                        <a href="https://lamaisondesbiscuits.netlify.app/" target="_blank" class="portfolio-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item web fade-in delay-2">
+                    <img src="/si3.jpg" alt="Blog" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">VoyageXperience</h3>
+                        <p class="portfolio-category">Développement Web</p>
+                        <a href="https://voyagexperience229.netlify.app/" target="_blank" class="portfolio-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item web fade-in">
+                    <img src="/si4.jpg" alt="E-commerce" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Afrika Studio</h3>
+                        <p class="portfolio-category">Développement Web</p>
+                        <a href="https://afrikastudio.netlify.app/" target="_blank" class="portfolio-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item web fade-in delay-1">
+                    <img src="/si5.jpg" alt="Application web" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Blog personnel</h3>
+                        <p class="portfolio-category">Développement Web</p>
+                        <a href="https://www.exemple-site5.com" target="_blank" class="portfolio-link">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Solutions IA (5 exemples) -->
+                <div class="portfolio-item ia fade-in delay-2">
+                    <img src="/ia1.jpg" alt="Chatbot" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Chatbot Intelligent</h3>
+                        <p class="portfolio-category">Solution IA</p>
+                        <a href="/ia1.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item ia fade-in">
+                    <img src="/ia2.jpg" alt="Reconnaissance d'image" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Reconnaissance d'Image</h3>
+                        <p class="portfolio-category">Solution IA</p>
+                        <a href="/ia2.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item ia fade-in delay-1">
+                    <img src="/ia3.jpg" alt="Analyse de données" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Analyse de Données</h3>
+                        <p class="portfolio-category">Solution IA</p>
+                        <a href="/ia3.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item ia fade-in delay-2">
+                    <img src="/ia4.jpg" alt="Recommandation" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Système de Recommandation</h3>
+                        <p class="portfolio-category">Solution IA</p>
+                        <a href="/ia4.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item ia fade-in">
+                    <img src="/ia5.jpg" alt="Traitement NLP" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Traitement NLP</h3>
+                        <p class="portfolio-category">Solution IA</p>
+                        <a href="/ia5.jpg" class="portfolio-link" data-lightbox="portfolio">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-img">
+        </div>
+        <div class="lightbox-nav">
+            <button id="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+            <button id="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Contactez-moi</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: rgba(255,255,255,0.7);" class="fade-in delay-1">Vous avez un projet en tête ou souhaitez discuter d'une collaboration ? N'hésitez pas à me contacter.</p>
+            
+            <div class="contact-info fade-in">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="contact-title">Téléphone</h3>
+                    <p class="contact-detail">+229 01 52 90 21 99</p>
+                </div>
+                <div class="contact-card fade-in delay-1">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="contact-title">Email</h3>
+                    <p class="contact-detail">roxanekidjo59@gmail.com</p>
+                </div>
+                <div class="contact-card fade-in delay-2">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="contact-title">Adresse</h3>
+                    <p class="contact-detail">Cotonou, Bénin</p>
+                </div>
+            </div>
+            
+            <div class="social-links fade-in delay-2">
+                <!-- REMPLACER LES LIENS PAR VOS VRAIS LIENS DE RÉSEAUX SOCIAUX -->
+                <a href="https://www.facebook.com/roxane.kidjo" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@roxane5290?_t=ZM-8z2WvrEg6KO&_r=1" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/votreprofil" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/+2290152902199" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:votre.roxanekidjo59@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Roxane Kidjo</div>
+            <div class="footer-links">
+                <a href="#home" class="footer-link">Accueil</a>
+                <a href="#about" class="footer-link">À propos</a>
+                <a href="#services" class="footer-link">Services</a>
+                <a href="#portfolio" class="footer-link">Portfolio</a>
+                <a href="#contact" class="footer-link">Contact</a>
+            </div>
+            <p class="copyright">&copy; 2023 Roxane Kidjo. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Filtrage du portfolio
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Active le bouton cliqué
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        
+        let currentImageIndex = 0;
+        let currentImages = [];
+        
+        // Récupérer tous les liens de lightbox
+        const lightboxLinks = document.querySelectorAll('[data-lightbox="portfolio"]');
+        
+        // Ajouter les écouteurs d'événements pour chaque lien
+        lightboxLinks.forEach((link, index) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Récupérer toutes les images du portfolio
+                currentImages = Array.from(lightboxLinks).map(el => el.getAttribute('href'));
+                currentImageIndex = index;
+                
+                // Afficher l'image dans la lightbox
+                lightboxImg.src = currentImages[currentImageIndex];
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Fermer la lightbox
+        lightboxClose.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Navigation dans la lightbox
+        lightboxPrev.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+            lightboxImg.src = currentImages[currentImageIndex];
+        });
+        
+        lightboxNext.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+            lightboxImg.src = currentImages[currentImageIndex];
+        });
+        
+        // Fermer la lightbox en cliquant à l'extérieur
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Animation au scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Navigation active
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop - 300) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Fermer le menu mobile après clic sur un lien
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
