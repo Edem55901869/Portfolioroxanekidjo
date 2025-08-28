@@ -13,6 +13,17 @@
             --dark: #121212;
             --light: #f8f8f8;
             --transition: 0.4s ease;
+            --bg-color: #121212;
+            --text-color: #f8f8f8;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8f8f8;
+            --text-color: #121212;
+            --card-bg: rgba(0, 0, 0, 0.05);
+            --border-color: rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -23,10 +34,11 @@
         }
 
         body {
-            background-color: var(--dark);
-            color: var(--light);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Typographie responsive */
@@ -62,7 +74,12 @@
             background: rgba(18, 18, 18, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] header {
+            background: rgba(248, 248, 248, 0.95);
         }
 
         .header-container {
@@ -76,7 +93,7 @@
             font-weight: 700;
             color: var(--light);
             text-decoration: none;
-            background: yellow;
+            background: #1E90FF;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -89,7 +106,7 @@
         }
 
         nav a {
-            color: var(--light);
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             position: relative;
@@ -113,11 +130,27 @@
             width: 100%;
         }
 
+        /* Bouton thème */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--secondary);
+        }
+
         /* Menu mobile */
         .menu-toggle {
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
+            color: var(--text-color);
         }
 
         /* Sections communes */
@@ -138,15 +171,22 @@
             padding-top: 100px;
         }
 
+        .flex-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
         .home-content {
             flex: 1;
-            padding-right: 40px;
+            text-align: left;
         }
 
         .home-img {
             flex: 1;
             position: relative;
-            max-width: 500px;
+            max-width: 450px;
         }
 
         .home-img img {
@@ -164,13 +204,15 @@
         .home-subtitle {
             font-size: 1.5rem;
             margin-bottom: 30px;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-color);
+            opacity: 0.8;
         }
 
         .home-text {
             margin-bottom: 40px;
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-color);
+            opacity: 0.7;
         }
 
         .btn-group {
@@ -204,7 +246,7 @@
 
         .btn-outline {
             border: 2px solid var(--secondary);
-            color: var(--light);
+            color: var(--text-color);
         }
 
         .btn-outline:hover {
@@ -222,6 +264,11 @@
         /* À propos */
         #about {
             background: rgba(255, 255, 255, 0.02);
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] #about {
+            background: rgba(0, 0, 0, 0.02);
         }
 
         .about-container {
@@ -232,7 +279,8 @@
 
         .about-img {
             flex: 1;
-            min-width: 300px;
+            min-width: 250px;
+            max-width: 350px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
@@ -252,10 +300,15 @@
         .about-content {
             flex: 1;
         }
-
+/* Ajoutez ceci à la fin de votre section CSS */
+.about-container .about-img {
+    max-width: 350px;
+    width: 100%;
+}
         .about-text {
             margin-bottom: 30px;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-color);
+            opacity: 0.7;
         }
 
         /* Services */
@@ -267,11 +320,11 @@
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 30px;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .service-card:hover {
@@ -294,7 +347,8 @@
         }
 
         .service-description {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-color);
+            opacity: 0.6;
         }
 
         /* Compétences */
@@ -320,6 +374,10 @@
             overflow: hidden;
         }
 
+        [data-theme="light"] .skill-bar {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
         .skill-progress {
             height: 100%;
             border-radius: 4px;
@@ -340,7 +398,7 @@
             padding: 8px 20px;
             border: 2px solid var(--primary);
             background: transparent;
-            color: var(--light);
+            color: var(--text-color);
             border-radius: 30px;
             cursor: pointer;
             transition: var(--transition);
@@ -503,12 +561,12 @@
         }
 
         .contact-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 30px;
             text-align: center;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .contact-card:hover {
@@ -531,7 +589,8 @@
         }
 
         .contact-detail {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-color);
+            opacity: 0.7;
         }
 
         .social-links {
@@ -545,14 +604,14 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--light);
+            color: var(--text-color);
             font-size: 1.2rem;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .social-link:hover {
@@ -565,7 +624,12 @@
             background: rgba(0, 0, 0, 0.3);
             padding: 30px 0;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] footer {
+            background: rgba(0, 0, 0, 0.05);
         }
 
         .footer-logo {
@@ -586,7 +650,7 @@
         }
 
         .footer-link {
-            color: var(--light);
+            color: var(--text-color);
             text-decoration: none;
             transition: var(--transition);
         }
@@ -596,7 +660,8 @@
         }
 
         .copyright {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-color);
+            opacity: 0.5;
             font-size: 0.9rem;
         }
 
@@ -617,7 +682,7 @@
         /* Responsive */
         @media (max-width: 992px) {
             .about-container,
-            #home .container {
+            .flex-container {
                 flex-direction: column;
             }
 
@@ -633,7 +698,7 @@
 
             .about-img {
                 margin-bottom: 40px;
-                max-width: 400px;
+                max-width: 100%;
             }
         }
 
@@ -641,13 +706,18 @@
             .menu-toggle {
                 display: block;
             }
-
+@media (max-width: 768px) {
+    .about-img {
+        max-width: 280px;
+        min-width: auto;
+    }
+}
             nav {
                 position: fixed;
                 top: 80px;
                 left: 0;
                 width: 100%;
-                background: var(--dark);
+                background: var(--bg-color);
                 padding: 20px;
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
                 transform: translateY(-150%);
@@ -699,9 +769,9 @@
 
             .social-links {
                 gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+                flex-wrap: wrap;
+                justify-content: center;
+            }
 
             .social-link {
                 width: 40px;
@@ -729,6 +799,9 @@
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
             </nav>
         </div>
     </header>
@@ -756,7 +829,7 @@
                 </div>
             </div>
         </div>
-      </section>
+       </section>
 
     <!-- Section À propos -->
     <section id="about">
@@ -824,16 +897,7 @@
                 <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">Mes Compétences</h3>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span>UI/UX Design</span>
-                        <span>50%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 50%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Illustration</span>
+                        <span> Motion design</span></span>
                         <span>90%</span>
                     </div>
                     <div class="skill-bar">
@@ -842,7 +906,7 @@
                 </div>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span>Développement Front-end</span>
+                        <span>Développement front-end</span>
                         <span>85%</span>
                     </div>
                     <div class="skill-bar">
@@ -851,7 +915,16 @@
                 </div>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span>Motion Design</span>
+                        <span> Intégration IA</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span> Illustration</span>
                         <span>80%</span>
                     </div>
                     <div class="skill-bar">
@@ -860,11 +933,11 @@
                 </div>
                 <div class="skill-item">
                     <div class="skill-info">
-                        <span>Intégration IA</span>
-                        <span>75%</span>
+                        <span>UI/UX Design</span>
+                        <span>50%</span>
                     </div>
                     <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%"></div>
+                        <div class="skill-progress" style="width: 50%"></div>
                     </div>
                 </div>
             </div>
@@ -875,7 +948,7 @@
     <section id="portfolio">
         <div class="container">
             <h2 class="section-title fade-in">Mon Portfolio</h2>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; color: rgba(255,255,255,0.7);" class="fade-in delay-1">Découvrez mes réalisations récentes à travers différents domaines de spécialisation.</p>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 40px; color: var(--text-color); opacity: 0.7;" class="fade-in delay-1">Découvrez mes réalisations récentes à travers différents domaines de spécialisation.</p>
             
             <div class="portfolio-filter fade-in delay-1">
                 <button class="filter-btn active" data-filter="all">Tous</button>
@@ -998,8 +1071,7 @@
                         </a>
                     </div>
                 </div>
-                
-                <!-- Affiches (5 exemples) -->
+                 <!-- Affiches (5 exemples) -->
                 <div class="portfolio-item affiche fade-in delay-1">
                     <img src="/af1.jpg" alt="Affiche concert" class="portfolio-img">
                     <div class="portfolio-overlay">
@@ -1186,7 +1258,7 @@
     <section id="contact">
         <div class="container">
             <h2 class="section-title fade-in">Contactez-moi</h2>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: rgba(255,255,255,0.7);" class="fade-in delay-1">Vous avez un projet en tête ou souhaitez discuter d'une collaboration ? N'hésitez pas à me contacter.</p>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: var(--text-color); opacity: 0.7;" class="fade-in delay-1">Vous avez un projet en tête ou souhaitez discuter d'une collaboration ? N'hésitez pas à me contacter.</p>
             
             <div class="contact-info fade-in">
                 <div class="contact-card">
@@ -1214,17 +1286,16 @@
             
             <div class="social-links fade-in delay-2">
                 <!-- REMPLACER LES LIENS PAR VOS VRAIS LIENS DE RÉSEAUX SOCIAUX -->
-                <a href="https://www.facebook.com/roxane.kidjo" https://portfolioroxanekidjo229.netlify.app/="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/roxane.kidjo" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.tiktok.com/@roxane5290?_t=ZM-8z2WvrEg6KO&_r=1" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
                 <a href="https://www.instagram.com/votreprofil" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
                 <a href="https://wa.me/+2290152902199" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:votre.roxanekidjo59@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:roxanekidjo59@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-<!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-logo">Roxane Kidjo</div>
@@ -1378,19 +1449,13 @@
         });
 
         // Gestion des erreurs de téléchargement du CV
-        const cvDownloadLink = document.getElementById('cv-download');
-        const cvError = document.getElementById('cv-error');
+        const cvDownloadLink = document.querySelector('a[download]');
         
         cvDownloadLink.addEventListener('click', (e) => {
-            // Réinitialiser le message d'erreur
-            cvError.style.display = 'none';
-            
             // Vérifier après un court délai si le téléchargement a réussi
             setTimeout(() => {
                 // Si le navigateur est toujours sur la même page, supposons que le téléchargement a échoué
                 if (!document.hidden) {
-                    cvError.style.display = 'block';
-                    
                     // Proposer une alternative
                     setTimeout(() => {
                         if (confirm("Le téléchargement semble avoir échoué. Souhaitez-vous m'envoyer un email pour demander mon CV ?")) {
@@ -1399,6 +1464,37 @@
                     }, 1000);
                 }
             }, 2000);
+        });
+
+        // Gestion du thème clair/sombre
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Vérifier le thème sauvegardé ou la préférence système
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        }
+        
+        // Basculer le thème
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
         });
     </script>
 </body>
